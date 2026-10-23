@@ -29,7 +29,97 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char text[100];
+    int key[3][3], i, j, k, sum, len;
+
+    printf("Enter the plaintext: ");
+    scanf("%99s", text);
+
+    printf("Enter the 3x3 key:\n");
+    for (i = 0; i < 3; i++)
+        for (j = 0; j < 3; j++)
+            scanf("%d", &key[i][j]);
+
+    for (i = 0; text[i] != '\0'; i++)
+        text[i] = toupper(text[i]);
+
+    len = strlen(text);
+
+    while (len % 3 != 0) {
+        text[len++] = 'X';
+        text[len] = '\0';
+    }
+
+    printf("Cipher text: ");
+
+    for (i = 0; i < len; i += 3) {
+        for (j = 0; j < 3; j++) {
+            sum = 0;
+            for (k = 0; k < 3; k++)
+                sum += key[j][k] * (text[i + k] - 'A');
+
+            printf("%c", (sum % 26) + 'A');
+        }
+    }
+
+    printf("\n");
+    return 0;
+}
+```
+
 
 ## OUTPUT
+<img width="916" height="687" alt="image" src="https://github.com/user-attachments/assets/521a87a7-6628-45e3-b99d-4459388cfc8b" />
+
 
 ## RESULT
+Thus the implementation of hill cipher had been executed successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
